@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --cyan: #ABECFD;
+  --grey: #23272a;
+  --dark: #0c1013;
+  --text: #e6ecf1;
+  --border-radius: 22px;
+  --stat-bar-bg: #22292f;
+  --stat-bar-fill: #ABECFD;
+  --stat-bar-empty: #333a41;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--dark);
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Header */
+.union-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 58px;
+  background: var(--grey);
+  border-bottom: 3px solid var(--cyan);
+  display: flex;
+  align-items: center;
+  z-index: 20;
+  justify-content: flex-start;
+}
+.union-logo {
+  height: 36px;
+  margin-left: 20px;
+  margin-right: 16px;
+}
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+.header-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* Footer */
+.union-footer {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 44px;
+  background: var(--grey);
+  color: var(--text);
+  font-size: 0.95rem;
+  border-top: 3px solid var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  letter-spacing: 0.1px;
+}
+
+/* Centered box (landing & main) */
+.landing-box,
+.main-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  max-width: 400px;
+  width: 96vw;
+  background: var(--grey);
+  border: 4px solid var(--cyan);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 36px rgba(0,0,0,0.22);
+  padding: 2.2rem 2.1rem 2.5rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  min-width: 0;
+  max-height: calc(100vh - 58px - 44px - 24px);
+  overflow-y: auto;
+}
+
+/* --- LOADING OVERLAY: Only background is blurred, loading content is sharp --- */
+#loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  pointer-events: auto;
+  background: none; /* No blur or dark bg here! */
+  flex-direction: column;
+}
+
+/* This layer blurs what's behind, but not the loading text/bar */
+.blur-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  background: rgba(12,16,19,0.45);
+  border-radius: var(--border-radius);
+}
+
+/* Loading content sits above blur */
+.loading-content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Progress Bar */
+.loading-bar-bg {
+  width: 92%;
+  max-width: 340px;
+  height: 18px;
+  background: #22292f;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  margin-top: 24px;
+  box-shadow: 0 1px 5px 0 rgba(171,236,253,0.13);
+  overflow: hidden;
+  border: 2px solid var(--cyan);
+}
+.loading-bar-fg {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan) 70%, #7ff9fc 100%);
+  border-radius: 8px;
+  width: 0%;
+  transition: width 0.19s;
+}
+.loading-status {
+  margin-top: 8px;
+  color: #d8f9ff;
+  font-size: 1.18rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-shadow: 0 1px 14px #242c38dd, 0 0px 1px #67edfb;
+  text-align: center;
+  width: 98%;
+  min-height: 30px;
+  filter: drop-shadow(0 2px 8px #67edfb88);
+}
+
+/* Main page: User section */
+.pfp-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.user-pfp {
+  width: 90px;
+  height: 90px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 2px 16px rgba(171,236,253,0.17);
+  border: 2.5px solid var(--cyan);
+}
+.main-username {
+  font-size: 1.33rem;
+  font-weight: 700;
+  color: var(--cyan);
+  margin: 8px 0 0 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Stats */
+.stats-heading {
+  font-size: 1.08rem;
+  color: var(--cyan);
+  margin: 22px 0 16px 0;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.stat-line {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 9px;
+}
+.stat-name {
+  width: 136px;
+  text-align: left;
+  font-size: 0.98rem;
+  color: #c3e4f7;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.stat-bar {
+  flex: 1;
+  height: 15px;
+  background: var(--stat-bar-empty);
+  border-radius: 7px;
+  overflow: hidden;
+  margin: 0 6px;
+  box-shadow: 0 1px 4px 0 rgba(171,236,253,0.10);
+}
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--stat-bar-fill) 65%, #62e9fb 100%);
+  border-radius: 7px;
+  transition: width 0.7s cubic-bezier(0.44, 1.5, 0.55, 1.01);
+  min-width: 6%;
+}
+.stat-percent {
+  width: 50px;
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: 1px;
+}
+
+.landing-img {
+  width: 84px;
+  height: 84px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+.landing-heading {
+  color: var(--cyan);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.landing-desc {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* Username Input */
+.username-input-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.username-input {
+  width: 100%;
+  background: #16191c;
+  color: var(--cyan);
+  border: 2px solid var(--cyan);
+  border-radius: 14px;
+  padding: 0.7em 1em;
+  font-size: 1.08rem;
+  font-family: inherit;
+  letter-spacing: 0.7px;
+  outline: none;
+  box-shadow: 0 2px 18px 0 rgba(0,0,0,0.10);
+  transition: border 0.16s;
+}
+.username-input:focus {
+  border-color: #62e9fb;
+}
+
+.calculate-btn,
+.share-btn {
+  margin-top: 24px;
+  width: 100%;
+  background: var(--cyan);
+  color: #10131a;
+  font-size: 1.13rem;
+  font-weight: 600;
+  padding: 0.85em 0;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(171,236,253,0.10);
+  cursor: pointer;
+  transition: background 0.16s, color 0.12s;
+}
+.calculate-btn:hover,
+.share-btn:hover {
+  background: #62e9fb;
+  color: #16191c;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .landing-box, .main-box {
+    max-width: 99vw;
+    min-width: 0;
+    padding: 1.1rem 0.6rem 1.3rem 0.6rem;
+    border-radius: 18px;
+    max-height: calc(100vh - 58px - 44px - 12px);
+  }
+  .header-title { font-size: 1.06rem; }
+  .stat-name { width: 90px; font-size: 0.96rem; }
+  .stat-percent { width: 36px; font-size: 0.97rem; }
+  .user-pfp { width: 65px; height: 65px; }
+  .union-logo { height: 28px; margin-left: 12px; margin-right: 10px; }
+    }
