@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>zkPresence by Shinosuka</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="union-header">
+    <img src="union-logo.svg" alt="Union Logo" class="union-logo"/>
+    <div class="header-center">
+      <a href="https://x.com/Shinosuka_eth" target="_blank" class="header-title">zkPresence by Shinosuka</a>
+    </div>
+  </header>
+
+  <!-- Landing Page Box -->
+  <div id="landing-box" class="landing-box">
+    <img src="zk.png" alt="ZK Presence" class="landing-img"/>
+    <h2 class="landing-heading">Are You Ready To Calculate Your zkPresence?</h2>
+    <p class="landing-desc">
+      zkPresence shows how much you've truly contributed to the formation of the Union community.<br/>
+      Your stats reflect both long-term consistency and recent high-impact action. 
+      Every yap, ceremony, and contribution matters—see how your presence shapes the future of cross-chain interoperability.<br/>
+      Discover your real influence, flex your Union stats, and get ready to share your zk journey with the world!
+    </p>
+    <div class="username-input-container">
+      <input type="text" id="username-input" class="username-input" placeholder="@YourXUsername" autocomplete="off"/>
+    </div>
+    <button class="calculate-btn" id="calculate-btn">Calculate Your zkPresence</button>
+  </div>
+
+  <!-- Main Page Box -->
+  <div id="main-box" class="main-box" style="display:none; position:relative;">
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+      <div class="blur-layer"></div>
+      <div class="loading-content">
+        <div class="loading-bar-bg">
+          <div class="loading-bar-fg" id="loading-bar-fg"></div>
+        </div>
+        <div class="loading-status" id="loading-status">Fetching UserData...</div>
+      </div>
+    </div>
+    <div class="pfp-container">
+      <img id="pfp-img" src="" alt="Profile" class="user-pfp"/>
+    </div>
+    <h2 id="main-username" class="main-username">@Username</h2>
+    <h3 class="stats-heading">These are your zkPresence Stats</h3>
+    <div class="stat-line">
+      <span class="stat-name">zkConsistency</span>
+      <div class="stat-bar"><div id="consistency-bar" class="stat-bar-fill"></div></div>
+      <span id="consistency-val" class="stat-percent"></span>
+    </div>
+    <div class="stat-line">
+      <span class="stat-name">zkEffectiveness</span>
+      <div class="stat-bar"><div id="effectiveness-bar" class="stat-bar-fill"></div></div>
+      <span id="effectiveness-val" class="stat-percent"></span>
+    </div>
+    <div class="stat-line">
+      <span class="stat-name">zkUnionMaxi</span>
+      <div class="stat-bar"><div id="unionmaxi-bar" class="stat-bar-fill"></div></div>
+      <span id="unionmaxi-val" class="stat-percent"></span>
+    </div>
+    <div class="stat-line">
+      <span class="stat-name">zkPresence Score</span>
+      <div class="stat-bar"><div id="presence-bar" class="stat-bar-fill"></div></div>
+      <span id="presence-val" class="stat-percent"></span>
+    </div>
+    <button class="share-btn" id="share-btn">Share your zkPresence on X</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="union-footer">
+    These stats have been calculated based on your contributions in Union's Yapper Campaigns.
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>
