@@ -224,7 +224,7 @@ shareBtn.addEventListener('click', () => {
 🫀 zkUnionMaxi: ${u}
 🌐 zkPresence Score: ${p}
 
-Calculate your zkPresence: union-zkpresence.vercel.app`;
+Calculate your zkPresence: union-zkpresence.vercel.app\n\nhttps://x.com/Shinosuka_eth/status/1951646001908826313`;
 
   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
   window.open(url, '_blank');
